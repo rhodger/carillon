@@ -1,30 +1,41 @@
-mod misc;
+use super::misc::Length;
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_song_new() {
+    fn song_new() {
         let song = Song::new("All Star", 120);
 
         assert_eq!(song.title, "All Star");
         assert_eq!(song.length.get_length(), 120);
     }
+
+    #[test]
+    fn song_pretty_print() {
+        let song = Song::new("All Star", 120);
+
+        assert_eq!(song.pretty_print(), "All Star : 0:2:0".to_string());
+    }
 }
 
 pub struct Song {
     title: String,
-    length: misc::Length
+    length: Length
 }
 
 impl Song {
     pub fn new(t: &str, l: u32) -> Song {
         let song = Song {
             title: t.to_string(),
-            length: misc::Length::from_int(l)
+            length: Length::from_int(l)
         };
 
         return song;
+    }
+
+    pub fn pretty_print(&self) -> String {
+        format!("{} : {}", self.title, self.length.pretty_print())
     }
 }

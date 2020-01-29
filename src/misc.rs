@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct Length {
     length: u32
 }

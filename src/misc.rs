@@ -4,11 +4,9 @@ pub struct Length {
 
 impl Length {
     pub fn from_int(x: u32) -> Length {
-        let length: Length = Length {
+        Length {
             length: x
-        };
-
-        return length;
+        }
     }
 
     pub fn pretty_print(&self) -> String {

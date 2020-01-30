@@ -7,12 +7,10 @@ pub struct Song {
 
 impl Song {
     pub fn new(t: &str, l: u32) -> Song {
-        let song = Song {
+        Song {
             title: t.to_string(),
             length: Length::from_int(l)
-        };
-
-        return song;
+        }
     }
 
     pub fn from_title(title: &str) -> Song{

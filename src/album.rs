@@ -16,7 +16,12 @@ impl Album {
 
     pub fn get_title(&self) -> String { self.title.to_string() }
 
-    pub fn get_song(&self, i: u32) -> &Song { &self.songs.get(i as usize).expect("No song found") }
+    pub fn get_song(&self, i: u32) -> Option<&Song> {
+        match &self.songs.get(i as usize) {
+            Some(x) => Some(x),
+            None => None
+        }
+    }
 }
 
 #[cfg(test)]
@@ -38,6 +43,6 @@ mod tests {
         album.songs.push(Song::new("Flowerboy", 120));
 
         assert_eq!(album.get_title(), "Flowerboy");
-        assert_eq!(album.get_song(0).get_title(), "Flowerboy");
+        assert_eq!(album.get_song(0).unwrap().get_title(), "Flowerboy");
     }
 }

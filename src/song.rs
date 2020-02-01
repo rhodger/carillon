@@ -1,5 +1,6 @@
 use super::misc::Length;
 
+#[derive(Clone)]
 pub struct Song {
     title: String,
     length: Length

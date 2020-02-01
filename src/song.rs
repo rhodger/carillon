@@ -35,6 +35,7 @@ mod tests {
     }
 }
 
+#[derive(Clone)]
 pub struct Song {
     title: String,
     length: Length

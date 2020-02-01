@@ -1,7 +1,7 @@
 use super::song::Song;
 use super::misc::Length;
 
-struct Album {
+pub struct Album {
     title: String,
     songs: Vec<Song>
 }

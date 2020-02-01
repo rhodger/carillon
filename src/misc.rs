@@ -1,3 +1,14 @@
+use custom_error::custom_error;
+
+
+custom_error! {pub SongError
+    NotFound = "No song matching the given criteria could be found"
+}
+
+custom_error! {pub AlbumError
+    NotFound = "No album matching the given criteria could be found"
+}
+
 #[derive(Clone)]
 pub struct Length {
     length: u32

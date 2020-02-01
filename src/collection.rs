@@ -14,6 +14,10 @@ impl Collection {
             None => None
         }
     }
+
+    pub fn add(&mut self, album: Album) {
+        self.albums.push(album)
+    }
 }
 
 #[cfg(test)]
@@ -26,6 +30,15 @@ mod tests {
         collection.albums.push(Album::new("Flowerboy"));
 
         assert_eq!(collection.get_album(0).unwrap().get_title(),
+                   "Flowerboy");
+    }
+
+    #[test]
+    fn Collection_add() {
+        let mut collection = Collection::new();
+        collection.add(Album::new("Flowerboy"));
+
+        assert_eq!(collection.albums.pop().unwrap().get_title(),
                    "Flowerboy");
     }
 }

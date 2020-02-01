@@ -1,4 +1,5 @@
 use super::song::Song;
+use super::misc::Length;
 
 struct Album {
     title: String,
@@ -15,7 +16,7 @@ impl Album {
 
     pub fn get_title(&self) -> String { self.title.to_string() }
 
-    pub fn get_song(&self, i: u32) -> &Song { &self.songs.get(i) }
+    pub fn get_song(&self, i: u32) -> &Song { &self.songs.get(i as usize).expect("No song found") }
 }
 
 #[cfg(test)]
@@ -32,8 +33,11 @@ mod tests {
 
     #[test]
     fn album_getters(){
-        let album = Album::new("Flowerboy");
+        let mut album = Album::new("Flowerboy");
 
-        album.songs.push(Song {title: "Flowerboy".to_string(), length: Length::from_int(120)})
+        album.songs.push(Song::new("Flowerboy", 120));
+
+        assert_eq!(album.get_title(), "Flowerboy");
+        assert_eq!(album.get_song(0).get_title(), "Flowerboy");
     }
 }
